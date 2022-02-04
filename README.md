@@ -26,11 +26,12 @@ def parse(self, response, index, base_url):
         l.add_xpath('body_text', '//body//div//text() |//body//span//text() | //body//p//text() | //body//li//text() | //body/..//section/text()')
         yield l.load_item()
         
-        ```
+
+```
         
 ## Rotation of user agents in settings
         
- ```
+```
 data = requests.get('https://raw.githubusercontent.com/tamimibrahim17/List-of-user-agents/master/Chrome.txt').content
 data = str(data).split('\\n')
 user_agents = data[3:len(data)-1]
@@ -40,12 +41,11 @@ DOWNLOADER_MIDDLEWARES = {
 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
 'scrapy_useragents.downloadermiddlewares.useragents.UserAgentsMiddleware': 500,
                           }
- ```
+```
  
  ## Main improvement in Items processing :         
 
-
-  ```
+```
 from scrapy.loader.processors import Join, MapCompose, TakeFirst, Identity
 from w3lib.html import remove_tags,strip_html5_whitespace, replace_escape_chars,strip_html5_whitespace,get_base_url
 import re
