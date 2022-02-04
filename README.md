@@ -1,8 +1,12 @@
 # Scrapy code for scraping web pages
 ## Python code for scraping web pages tracking index and and original url
 
-## Main improvement in scraping.py : 
+## Main improvements in scraping.py : 
 ```
+import pandas as pd
+from ..items import GrabItem
+from scrapy.loader import ItemLoader
+
 def start_requests(self):
         my_file = "C:/Users/carol/Desktop/grab/grab/websites.csv"
         df = pd.read_csv(my_file)
@@ -12,24 +16,16 @@ def start_requests(self):
 
 
     def parse(self, response, index, base_url):   
-        
-
         l= ItemLoader(item= GrabItem(), response = response)
         l.add_value('index', index)
         l.add_value('base_url', base_url)
-        # l.add_value('final_url', response.url)
         l.add_xpath('title', '//title/text()')
         l.add_xpath('h1', '//h1/text()')
         l.add_xpath('h2', '//h2/text()')
         l.add_xpath('header_links_text',  '//header//a/text()')
         l.add_xpath('body_text', '//body//div//text() |//body//span//text() | //body//p//text() | //body//li//text() | //body/..//section/text()')
-        # items ={
-        #     'index' : index,
-        #     'base_url' : base_url,
-        #     'final_url' : final_url,
-        # }
-        # yield items
         yield l.load_item()
+        
         ```
         
         ## Rotation of user agents in settings
@@ -45,8 +41,8 @@ def start_requests(self):
         'scrapy_useragents.downloadermiddlewares.useragents.UserAgentsMiddleware': 500,
                                   }
          ```
-         
-         ## Items processing
+ ## Main improvement in Items processing :         
+
          
           ```
           from scrapy.loader.processors import Join, MapCompose, TakeFirst, Identity
