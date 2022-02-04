@@ -1,5 +1,5 @@
 # Scrapy code for scraping web pages
-## Python code for scraping web pages tracking index and and original url
+## Python code for scraping web pages tracking index and and origin url
 
 ## Main improvements in scraping.py : 
 ```
