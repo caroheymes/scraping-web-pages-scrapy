@@ -100,4 +100,16 @@ header_links_text = scrapy.Field(
                                     remove_space ),
         output_processor = Join()
                              )
-```          
+```   
+## improved results with trafilatura package
+
+The trafilatura package is easy to use and allows to obtain a very clean output
+```
+import trafilatura
+import pandas as pd
+results = pd.DataFrame()
+
+downloaded = trafilatura.fetch_url(URL)
+cleaned_body = trafilatura.extract(downloaded)
+
+```
